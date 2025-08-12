@@ -106,7 +106,9 @@ const FeaturedProjects = () => {
                   onMouseLeave={() => handleMouseLeave(rowIndex * 2)}
                 >
                   <video
-                    ref={el => videoRefs.current[rowIndex * 2] = el}
+                    ref={el => {
+                 videoRefs.current[rowIndex * 2] = el;
+                    }}
                     src={projects[rowIndex * 2].videoPath}
                     muted
                     loop
