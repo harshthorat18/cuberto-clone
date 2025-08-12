@@ -46,10 +46,27 @@ const Services = () => {
     }
   };
 
+  // Create ref callbacks for each video
+  const createVideoRef = (index: number) => (el: HTMLVideoElement | null) => {
+    videoRefs.current[index] = el;
+  };
+
   return (
     <div className="h-full bg-black">
       <section id="services" className="relative bg-white text-gray-900 rounded-t-[50px] overflow-hidden">
-      
+        {/* Curved top edge with SVG */}  
+        <div className="absolute top-0 left-0 w-full h-16 sm:h-20">
+          <svg 
+            className="w-full h-full" 
+            viewBox="0 0 1440 100" 
+            preserveAspectRatio="none"
+          >
+            <path 
+              fill="#000000" 
+              d="M0,0 C360,50 1080,50 1440,0 L1440,100 L0,100 Z" 
+            />
+          </svg>
+        </div>
         
         <div className="container mx-auto max-w-6xl pt-20 pb-20 px-4">
           <div className="text-center mb-16">
@@ -70,7 +87,7 @@ const Services = () => {
                 {/* Video with overlay effect */}
                 <div className="relative h-48 overflow-hidden">
                   <video
-                    ref={el => videoRefs.current[index] = el}
+                    ref={createVideoRef(index)}
                     src={service.videoPath}
                     muted
                     loop
