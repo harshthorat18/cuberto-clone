@@ -69,6 +69,11 @@ const FeaturedProjects = () => {
     }
   };
 
+  // Create ref callbacks for each video
+  const createVideoRef = (index: number) => (el: HTMLVideoElement | null) => {
+    videoRefs.current[index] = el;
+  };
+
   return (
     <section id="projects" className="relative bg-black text-white rounded-t-[50px] overflow-hidden">
       {/* Curved top edge with SVG */}
@@ -106,9 +111,7 @@ const FeaturedProjects = () => {
                   onMouseLeave={() => handleMouseLeave(rowIndex * 2)}
                 >
                   <video
-                    ref={el => {
-                 videoRefs.current[rowIndex * 2] = el;
-                    }}
+                    ref={createVideoRef(rowIndex * 2)}
                     src={projects[rowIndex * 2].videoPath}
                     muted
                     loop
@@ -152,7 +155,7 @@ const FeaturedProjects = () => {
                     onMouseLeave={() => handleMouseLeave(rowIndex * 2 + 1)}
                   >
                     <video
-                      ref={el => videoRefs.current[rowIndex * 2 + 1] = el}
+                      ref={createVideoRef(rowIndex * 2 + 1)}
                       src={projects[rowIndex * 2 + 1].videoPath}
                       muted
                       loop
