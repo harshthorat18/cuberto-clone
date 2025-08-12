@@ -1,11 +1,14 @@
 // utils/MagneticButton.ts
-import { gsap, Power2, Expo , EaseFunction } from "gsap";
+import { gsap, Power2, Expo } from "gsap";
 
 function lerp(start: number, end: number, t: number) {
   return start * (1 - t) + end * t;
 }
 
-export function MagneticButton(element: string, opts: { duration?: number; ease?: EaseFunction } = {}) {
+export function MagneticButton(
+  element: string,
+  opts: { duration?: number; ease?: typeof Power2.easeOut } = {}
+) {
   document.querySelectorAll<HTMLElement>(element).forEach((elem) => {
     elem.addEventListener("mousemove", (e) => {
       const rect = elem.getBoundingClientRect();
